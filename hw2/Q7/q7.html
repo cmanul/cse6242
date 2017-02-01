@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="author" content="Hang Su">
+    <title>College Scorecard Visualization</title>
+
+    <!-- Bootstrap -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Space+Mono" rel="stylesheet">
+    <link href="../lib/bootstrap.min.css" rel="stylesheet">
+    <link href="../lib/bootstrap-theme.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../lib/dc.css">
+    <link rel="stylesheet" href="q7.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h1 class="text-center">Scorecard Visualization</h1>
+      </div>
+      <p class="lead">This application shows facts about universities using open data to help future undergraduates make colleage decisions based on academic requirments, students population and salary after graduation et al. One can filter universities using various metrics and <strong>double click</strong> row in filtered results table to look into detailed demographics and degree awarded information.
+
+</p>
+      <div class="row">
+        <div class="col-md-9">
+          <h4>Institution Distribution by States</h4>
+          <div id="dc-school-geo"></div>
+        </div>
+        <div id="dc-school-type" class="col-md-3">
+          <h4>Control of Institution</h4>
+          <p>(Whether it's public, private nonprofit or private for-profit)</p>
+        </div>
+      </div>
+      <div class="row">
+        <div id="dc-avg-sat" class="col-md-6">
+          <h4>Average SAT</h4>
+          <p>(Average SAT equivalent score of students admitted)</p>
+        </div>
+        <div id="dc-enrollment" class="col-md-6">
+          <h4>Enrollment</h4>
+          <p>(Enrollment of undergraduate certificate/degree-seeking students)</p>
+        </div>
+      </div>
+      <div class="row">
+        <div id="dc-cost" class="col-md-6">
+          <h4>Cost</h4>
+          <p>(The average annual total cost of attendance, including tuition and fees, books and supplies, and living expenses, minus the average grant/scholarship aid.)</p>
+        </div>
+        <div id="dc-earn" class="col-md-6">
+          <h4>Median Earn</h4>
+          <p>(Median earnings of students working and not enrolled into study again 10 years after entry)</p>
+        </div>
+      </div>
+      <div class="row">
+      <div class="clearfix"></div>
+        <div class="dc-data-count">
+        </div>
+        <div class="col-md-12">
+          <table id="dc-school-table" class="table table-hover table-condensed">
+            <thead class="header">
+              <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Average SAT</th>
+                <th>#Undergraduate</th>
+                <th>Median Salary</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>
+
+<!-- Modal -->
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalTitle">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="detailModalTitle">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <h4>Demographics of Students</h4>
+            <p>Total share of enrollment of undergraduate degree-seeking students of various race.</p>
+            <div id="dc-detail-demo-pie"></div>
+          </div>
+          <div class="col-md-6">
+            <h4>Degrees Awarded</h4>
+            <p>Total shared of degrees awarded in various disciplines. </p>
+            <div id="dc-detail-degree-pie"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">2016 &copy; Hang Su. Generated with 
+  <a href="http://dc-js.github.io/dc.js/">dc.js</a>,
+  <a href="http://square.github.io/crossfilter/">crossfilter</a>, 
+  <a href="http://d3js.org/">d3.js</a> and 
+  <a href="http://twitter.github.io/bootstrap/">bootstrap</a>. 
+  Data by College Scorecard from <a href="http://catalog.data.gov/dataset/college-scorecard">DATA.GOV</a>. </p>
+      </div>
+    </footer>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../lib/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../lib/bootstrap.min.js"></script>
+    <script src="../lib/d3.v3.min.js"></script>
+    <script src="../lib/d3.tip.v0.6.3.js"></script>
+    <script src="../lib/crossfilter.js"></script>
+    <script src="../lib/dc.min.js"></script>
+    <script src="q7.js"></script>
+  </body>
+</html>

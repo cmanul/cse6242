@@ -1,0 +1,109 @@
+# Section A
+1.
+
+weka.classifiers.trees.RandomTree -K 0 -M 1.0 -V 0.001 -S 1 -do-not-check-capabilities
+
+Time taken to build model: 1.23 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances        3523               88.075  %
+Incorrectly Classified Instances       477               11.925  %
+Kappa statistic                          0.6073
+Mean absolute error                      0.1957
+Root mean squared error                  0.2985
+Relative absolute error                 58.1517 %
+Root relative squared error             72.7814 %
+Total Number of Instances             4000     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.961    0.412    0.895      0.961    0.927      0.618    0.915     0.973     0
+                 0.588    0.039    0.802      0.588    0.678      0.618    0.915     0.792     1
+Weighted Avg.    0.881    0.333    0.875      0.881    0.874      0.618    0.915     0.934     
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 3020  124 |    a = 0
+  353  503 |    b = 1
+
+
+2.
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.SGD -F 1 -L 0.001 -R 0.01 -E 500 -C 10.0 -S 1
+Relation:     hw4-data
+Instances:    4000
+Attributes:   12
+              fixed acidity
+              volatile acidity
+              citric acid
+              residual sugar
+              chlorides
+              free sulfur dioxide
+              total sulfur dioxide
+              density
+              pH
+              sulphates
+              alcohol
+              quality
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+Loss function: Log loss (logistic regression)
+
+Squared loss (linear regression)
+
+quality = 
+
+        -0.2593 (normalized) fixed acidity
+ +      -3.5137 (normalized) volatile acidity
+ +      -0.6834 (normalized) citric acid
+ +       2.327  (normalized) residual sugar
+ +      -2.486  (normalized) chlorides
+ +       1.6166 (normalized) free sulfur dioxide
+ +      -0.6756 (normalized) total sulfur dioxide
+ +      -0.523  (normalized) density
+ +       0.9935 (normalized) pH
+ +       1.0845 (normalized) sulphates
+ +       4.6473 (normalized) alcohol
+ -       3.0024
+
+Time taken to build model: 0.34 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances        3221               80.525  %
+Incorrectly Classified Instances       779               19.475  %
+Kappa statistic                          0.2572
+Mean absolute error                      0.2793
+Root mean squared error                  0.372 
+Relative absolute error                 82.9954 %
+Root relative squared error             90.6926 %
+Total Number of Instances             4000     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.959    0.758    0.823      0.959    0.886      0.296    0.780     0.921     0
+                 0.242    0.041    0.614      0.242    0.347      0.296    0.780     0.489     1
+Weighted Avg.    0.805    0.605    0.778      0.805    0.770      0.296    0.780     0.829     
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 3014  130 |    a = 0
+  649  207 |    b = 1
+
+
+# Section B
+1. The result of Weka is 88.08%, which is comparable to my result of 88.22%. A large forest size (100) and small leaf size (1) were ultilized in my implementation, which reduced model variance a lot. Weka potentially can be better if we fine tune the hyper parameters like tree depth and variance threshold et al.
+2. I chose logistic regression (LR) as another classifier. The performance of LinaerSVM is relatively bad (80.525%) compared to Random Forest (88.08%) even after I tuned learning rate and pernalty param. Input data class distribution is biased (3144 vs 856) can potentially harm LR. Instead, model like Random Forest that can fit non-linear decision boundary should work better. On the other hand, the LR is faster (0.34s vs 1.23s). From the confusion matrix we can see both method correctly classified comparable amount of 0 but LR misclassified more 1. This is the nature of LR, which tends to bias towards majority.
+
+
+

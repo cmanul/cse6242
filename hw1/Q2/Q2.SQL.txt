@@ -1,0 +1,92 @@
+create table movies(movie_id integer, name text, genre text);
+create table ratings(user_id integer, movie_id integer, rating real, timestamp integer);
+.separator %
+
+.import movies.txt movies 
+
+.import ratings.txt ratings
+
+.separator ", "
+
+-- b
+create index movies_primary_index on movies(movie_id);
+create index movies_secondary_index on ratings(movie_id);
+select null;
+
+-- c
+select count(*) from 
+(
+    select count(r.rating) as c, avg(r.rating) as s
+    from movies m join ratings r on m.movie_id = r.movie_id
+    group by m.movie_id
+) temp 
+where temp.s >= 3.5 and temp.c >= 500;
+select null;
+
+-- d
+select movies.movie_id, movies.name, temp.c from 
+(    select count(m.movie_id) c, m.movie_id
+    from movies m join ratings r on m.movie_id = r.movie_id
+    group by m.movie_id
+) temp join movies on temp.movie_id == movies.movie_id
+where temp.c >= 2500
+order by temp.c desc, movies.name;
+select null;
+
+-- e
+select movies.movie_id, movies.name, temp.score from 
+(    select avg(r.rating) score, m.movie_id
+    from movies m join ratings r on m.movie_id = r.movie_id
+    group by m.movie_id
+) temp join movies on temp.movie_id == movies.movie_id
+order by temp.score desc, movies.name
+limit 10;
+select null;
+
+-- f
+select movies.name, avg_rating, review_count, genre from 
+(    select avg(r.rating) avg_rating, count(r.user_id) review_count, m.movie_id
+    from movies m join ratings r on m.movie_id = r.movie_id
+    group by m.movie_id
+) temp join movies on temp.movie_id == movies.movie_id
+where review_count >= 1000
+order by avg_rating desc, name, genre
+limit 8;
+select null;
+
+-- g
+create view common_interests as
+select r1.user_id as user_id1, r2.user_id as user_id2, m.name as movie_name
+from
+(
+    select movie_id from
+    (
+        select count(r.user_id) review_count, m.movie_id
+        from movies m join ratings r on m.movie_id = r.movie_id
+        group by m.movie_id
+    ) temp
+    where temp.review_count == 10
+) ten_review_movie join movies m on ten_review_movie.movie_id = m.movie_id 
+join ratings r1 on r1.movie_id = ten_review_movie.movie_id
+join ratings r2 on r2.movie_id = ten_review_movie.movie_id
+where r1.user_id < r2.user_id;
+select null;
+
+-- h
+select count(*) from common_interests;
+select null;
+
+
+-- i
+.separator ,
+
+CREATE VIRTUAL TABLE movie_overview USING fts3(id integer, name text, year integer, overview text,
+popularity decimal);
+
+.import movie-overview.txt movie_overview
+
+select count(*) from movie_overview where overview match 'death OR life';
+select null;
+
+select id from movie_overview where overview match 'life AND about NOT (life NEAR/5 about)';
+select null;

@@ -1,0 +1,8 @@
+bigrams = LOAD 's3://cse6242-2016fall-bigrams-big/*' USING PigStorage() AS (grams:chararray, year:int, occurrences:int, book: int);
+bigrams = FILTER bigrams BY occurrences >= 50;
+bigrams_grp = GROUP bigrams BY grams;
+gram_avg = FOREACH bigrams_grp GENERATE group AS key, (double)SUM(bigrams.occurrences) / (double)SUM(bigrams.book) AS value;
+res = ORDER gram_avg BY value DESC, key ASC;
+res = LIMIT res 10;
+STORE res INTO 's3://cmanulemrtest/cse6242/big-output/' USING PigStorage ('\t');
+

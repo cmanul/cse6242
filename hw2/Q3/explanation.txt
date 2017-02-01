@@ -1,0 +1,3 @@
+i.2 The first plot using petal width and petal length better seperated different classes. We can identify clear cluster pattern. Instead in second figure versicolor and virginica mixed together.
+
+iii. we use log scale when the range of value is large and in linear scale small value may dismissed. in addition it can show multiplicative growth factor.

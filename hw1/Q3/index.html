@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="d3/d3.v3.min.js"></script>
+    <style>
+    div.bar {
+        display: inline-block;
+        width: 30px;
+        height: 75px;
+        margin-left: 2px;
+        background-color: teal;
+        border: 1px solid black;
+    }
+    </style>
+</head>
+
+<body>
+    <script>
+    var colors = ["#f7cac9", "#92a8d1", "#d192a8", "#cac9f7", "#92d1bb"]
+    var dataset = []; //Initialize empty array
+    for (var i = 0; i < 25; i++) { //Loop 25 times
+        var newNumber = Math.random() * 80 + 20; //New random number (0-30)
+        var color = colors[Math.floor(i / 5)];
+        dataset.push({
+            n: newNumber + "px",
+            c: color
+        }); //Add new number to array
+    }
+    d3.selectAll("div")
+        .data(dataset)
+        .enter()
+        .append("div")
+        .attr("class", "bar")
+        .style("height", function(d) {
+            return d.n;
+        })
+        .style("background-color", function(d) {
+            console.log(d);
+            return d.c;
+        });
+    </script>
+    <h1>Hang Su</h1>
+</body>
+
+</html>

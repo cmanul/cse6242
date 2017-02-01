@@ -1,0 +1,1 @@
+FTS is fast because it tokenize the free text and build inverted-index on that, which is a standard way for information retrieval.

@@ -1,0 +1,24 @@
+body {
+  font: 10px sans-serif;
+}
+
+div.main {
+    margin: auto;
+    width: 1000px;
+}
+.main h2 {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.dot {
+  stroke: #000;
+}
+

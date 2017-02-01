@@ -1,0 +1,2 @@
+1. run community detection algo and color nodes according to community affiliation
+2. set the size of label according to betweenness centrality of nodes

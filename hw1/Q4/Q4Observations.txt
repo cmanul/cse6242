@@ -1,0 +1,9 @@
+i. key collision is much faster, nearest neighbour give result that make more sense. I choose key collision as it's fast and result is acceptable at least for most common items.
+
+n-gram can help fix typos that's hard to detech with original fingerprint
+
+iii. SPONSOR is nominal, status is ordinal
+
+v. I run 'reconcile' on sponsor's name using reconcile service by 'opencorporates.com' so that additional information for sponsor as a coporation is available.
+
+

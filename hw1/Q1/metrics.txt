@@ -1,0 +1,8 @@
+Average node degree: 2.115
+How many friend/follower one have on average
+
+Diameter of the graph: 4
+In the given social network, by way of introduction as "a friend of a friend", one is at most 4 steps away from any other person.
+
+Average path length: 3.59
+In the given social network, by way of introduction as "a friend of a friend", one is 3.59 steps away from any other person on average.

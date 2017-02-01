@@ -1,0 +1,2 @@
+1. removed redundant columns, i.e. year, and empty columns, and renamed columns, filled zero, formatted number, added background color according to country. highlighted header and column of interest.
+2. bar chart in horizontal. group by origin. ordered by total refugees descending. color by palette.

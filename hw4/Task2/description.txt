@@ -1,0 +1,5 @@
+Random tree is ultilized in my random forest implementation. One random attribute will be selected to split a tree node. Two samples will be randomly selected and their mean value of the selected attribute will be used as spliting threshold. This methodology is originally proposed in [1]. No max tree depth specified. Tree size controlled by max leaf size. This method runs super fast and performance is comparable to other entropy based splitting method.
+
+The estimated OOB is 0.8822 with 100 trees and leaf size equals 1
+
+[1] Cutler, Adele, and Guohua Zhao. "Pert-perfect random tree ensembles." Computing Science and Statistics 33 (2001): 490-497.

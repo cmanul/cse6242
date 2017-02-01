@@ -1,0 +1,9 @@
+Calculate total outgoing weights for nodes through map, filter, reduceByKey. Calculate total incoming weights in similar approach. Join these two RDDs and calculate gross weight through outer join and mapValues. Finally save the result.
+
+Step 1, line 16: create RDD r1: input =map=> RDD[(src, weight)] =filter=> RDD[(src, weight)] =reduceByKey=> RDD[(node, sum_out)]
+
+Step 2, line 23: create RDD r2: input =map=> RDD[(tgt, weight)] =filter=> RDD[(tgt, weight)] =reduceByKey=> RDD[(node, sum_in)]
+
+Step 3, line 30: Calculate gross weight, r1 outer join with r2 => RDD[(node, (sum_out, sum_in))] =map=> RDD[(node, gross)]
+
+Step 4, line 40: Save.

@@ -1,0 +1,1 @@
+visualize vairous dimensions of college data as filters, including state, expense, #students, type (public, private) and income after graduation et al. Detailed info like demographics and distribution of awarded degree of filtered schools will be pop-up in a dialog after double click.

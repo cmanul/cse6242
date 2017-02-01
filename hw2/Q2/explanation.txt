@@ -1,0 +1,1 @@
+c. I used log2(degree) + 3. The min of radius is 3 and max is about 6. Original degree range from 1 to 9 differs too much. Without the offset 3, the small node will be too small to observe.
